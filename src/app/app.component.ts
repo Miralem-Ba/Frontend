@@ -1,19 +1,14 @@
 import { Component } from '@angular/core';
-import {AccordionWrapperComponent} from "./accordion-wrapper/accordion-wrapper.component";
-import {AccordionElementComponent} from "./accordion-element/accordion-element.component";
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'pg-root',
+  selector: 'pm-root',
+  standalone: true,
+  imports: [CommonModule, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  imports: [
-    AccordionWrapperComponent,
-    AccordionElementComponent
-  ],
-  standalone: true
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'playground';
-  date = new Date();
-  protected readonly History = History;
+  title = 'product-manager-frontend';
 }
