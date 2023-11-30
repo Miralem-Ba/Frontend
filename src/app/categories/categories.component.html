@@ -1,0 +1,10 @@
+<div>
+  <h2>Kategorien</h2>
+  <ul>
+    <li *ngFor="let category of categories">{{ category.name }}</li>
+  </ul>
+
+  <!-- Einfaches Formular zum Hinzufügen einer neuen Kategorie -->
+  <input #categoryName type="text" placeholder="Name der neuen Kategorie">
+  <button (click)="createCategory(categoryName.value)">Erstellen</button>
+</div>
