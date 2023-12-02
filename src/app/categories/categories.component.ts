@@ -12,12 +12,10 @@ export class CategoriesComponent {
   categories = [
     { id: 1, name: 'Elektronik' },
     { id: 2, name: 'Bücher' },
-    // ... weitere Kategorien ...
   ];
 
   createCategory(name: string) {
     const newCategory = { id: this.categories.length + 1, name: name };
     this.categories.push(newCategory);
-    // Hier würden Sie normalerweise den Service aufrufen, um die Kategorie zu speichern
   }
 }
