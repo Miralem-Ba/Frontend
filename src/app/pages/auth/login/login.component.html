@@ -1,0 +1,17 @@
+
+<form class="center mat-elevation-z2" (ngSubmit)="submit()">
+  <mat-form-field>
+    <mat-label>E-Mail-Adresse</mat-label>
+    <input [formControl]="fromGroup.controls.email" type="email" matInput>
+    <mat-error *ngIf="fromGroup.controls.email.hasError('required')">
+      Feld darf nicht leer sein!
+    </mat-error>
+    <mat-error *ngIf="fromGroup.controls.email.hasError('email')">
+      Muss eine gültige E-Mail-Adresse sein!
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Passwort</mat-label>
+    <input [formControl]="fromGroup.controls.password" type="password" matInput>
+  </mat-form-field>
+</form>
