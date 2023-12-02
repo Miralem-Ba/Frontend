@@ -12,10 +12,14 @@ export class CategoriesComponent {
   categories = [
     { id: 1, name: 'Elektronik' },
     { id: 2, name: 'Bücher' },
+    // weitere Kategorien
   ];
 
-  createCategory(name: string) {
-    const newCategory = { id: this.categories.length + 1, name: name };
+  createCategory(categoryNameInput: HTMLInputElement): void {
+    const newCategory = { id: this.categories.length + 1, name: categoryNameInput.value };
     this.categories.push(newCategory);
+
+    // Reset the input field
+    categoryNameInput.value = '';
   }
 }

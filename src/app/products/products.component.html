@@ -4,9 +4,8 @@
     <li *ngFor="let product of products">{{ product.name }} - {{ product.price | currency }}</li>
   </ul>
 
-
-  <input #productName type="text" placeholder="Name des neuen Produktes">
-  <input #productPrice type="number" placeholder="Preis des neuen Produktes">
-  <button (click)="createProduct(productName.value, productPrice.value)">Erstellen</button>
-
+  <!-- Verwenden Sie die lokalen Variablen direkt, anstatt .value im Template -->
+  <input #productNameInput type="text" placeholder="Name des neuen Produktes">
+  <input #productPriceInput type="number" placeholder="Preis des neuen Produktes">
+  <button (click)="createProduct(productNameInput, productPriceInput)">Erstellen</button>
 </div>

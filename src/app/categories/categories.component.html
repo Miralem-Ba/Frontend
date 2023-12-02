@@ -1,9 +1,9 @@
 <div>
-  <h2>Categories</h2>
+  <h2>Kategorien</h2>
   <ul>
     <li *ngFor="let category of categories">{{ category.name }}</li>
   </ul>
 
-  <input #categoryName type="text" placeholder="Name der neuen Kategorie">
-  <button (click)="createCategory(categoryName.value)">Erstellen</button>
+  <input #categoryNameInput type="text" placeholder="Name der neuen Kategorie">
+  <button (click)="createCategory(categoryNameInput)">Erstellen</button>
 </div>
