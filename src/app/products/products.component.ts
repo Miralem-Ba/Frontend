@@ -12,14 +12,11 @@ export class ProductsComponent {
   products = [
     { id: 1, name: 'Laptop', price: 999.99 },
     { id: 2, name: 'Smartphone', price: 599.99 },
-
   ];
 
-  createProduct(name: string, price: number) {
-    const newProduct = { id: this.products.length + 1, name: name, price: price };
+  createProduct(name: string, price: string) {
+    const newProduct = { id: this.products.length + 1, name: name, price: Number(price) };
     this.products.push(newProduct);
-
   }
-
   protected readonly Number = Number;
 }

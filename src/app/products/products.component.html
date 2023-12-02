@@ -1,4 +1,3 @@
-<p>products works!</p>
 <div>
   <h2>Produkte</h2>
   <ul>
@@ -8,5 +7,6 @@
 
   <input #productName type="text" placeholder="Name des neuen Produktes">
   <input #productPrice type="number" placeholder="Preis des neuen Produktes">
-  <button (click)="createProduct(productName.value, Number('productPrice.value'))">Erstellen</button>
+  <button (click)="createProduct(productName.value, productPrice.value)">Erstellen</button>
+
 </div>
