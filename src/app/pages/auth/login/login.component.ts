@@ -13,7 +13,7 @@ import {MatButtonModule} from "@angular/material/button";
 })
 export class LoginComponent {
   fromGroup = new FormGroup({
-    email: new FormControl(),
+    email: new FormControl(null, [Validators.pattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,10}$/), Validators.required]),
     password: new FormControl()
   });
 

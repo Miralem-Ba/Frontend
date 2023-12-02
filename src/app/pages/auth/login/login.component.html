@@ -6,7 +6,7 @@
     <mat-error *ngIf="fromGroup.controls.email.hasError('required')">
       Feld darf nicht leer sein!
     </mat-error>
-    <mat-error *ngIf="fromGroup.controls.email.hasError('email')">
+    <mat-error *ngIf="fromGroup.controls.email.hasError('pattern')">
       Muss eine gültige E-Mail-Adresse sein!
     </mat-error>
   </mat-form-field>
@@ -14,4 +14,10 @@
     <mat-label>Passwort</mat-label>
     <input [formControl]="fromGroup.controls.password" type="password" matInput>
   </mat-form-field>
+
+  <div class="midde">
+    <button mat-button color="primary" type="submit" mat-raised-button>
+      Anmelden
+    </button>
+  </div>
 </form>
