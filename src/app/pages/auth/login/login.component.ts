@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'pm-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatInputModule, ReactiveFormsModule, MatButtonModule],
+  imports: [CommonModule, FormsModule, MatInputModule, ReactiveFormsModule, MatButtonModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
