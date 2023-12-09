@@ -1,58 +1,43 @@
-@use '../../../../styles.scss' as styles;
+// Hauptcontainer-Stil
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  height: 100vh; // Dies stellt sicher, dass der Container die volle Bildschirmhöhe einnimmt
+}
 
-// Verwenden Sie eine Container-Klasse, um das Layout zu zentrieren und zu definieren
-.container {
+// Stil für die mat-card-Komponente
+.mat-card {
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1); // Weicher Schatten für einen schwebenden Effekt
+  border-radius: 4px; // Abgerundete Ecken
   width: 100%;
-  height: 100vh; // Vollbildhöhe
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.card-container {
-  width: 80%;
   max-width: 500px; // Maximale Breite der Karte
-  box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.3); // Leichtere Schatten
-  padding: 2rem; // Innerer Abstand
-  background-color: gray; // Verwenden Sie eine Sekundärfarbe aus Ihren globalen Styles
-  border-radius: 8px; // Abgerundete Ecken
+  margin: 16px; // Abstand um die Karte herum
+  padding: 24px; // Innenabstand innerhalb der Karte
+  background: white; // Hintergrundfarbe der Karte
 }
 
-mat-card {
-  width: 100%; // Die Karte füllt den Container aus
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
+// Stil für die mat-form-field-Komponenten
 mat-form-field {
-  width: 100%; // Formularfelder füllen die verfügbare Breite aus
-  margin-bottom: 1rem; // Abstand am unteren Rand für jedes Formularfeld
+  width: 100%; // Formularfelder sollen die volle Breite ausfüllen
+  margin-bottom: 16px; // Abstand zwischen den Feldern
 }
 
+// Stil für Buttons
 button {
-  margin-top: 1rem; // Abstand am oberen Rand für den Button
+  width: 100%; // Button soll die volle Breite ausfüllen
+  margin-top: 16px; // Abstand oberhalb des Buttons
 }
 
-// Hintergrundbild für die Kopfzeile der Karte
-.example-header-image {
-  width: 100%; // Vollbildbreite
-  height: 200px; // Feste Höhe für das Header-Bild
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-  border-top-left-radius: 8px; // Runde Ecken, die zur Karte passen
-  border-top-right-radius: 8px;
+// Stil für den Zurück-Button
+a.mat-button {
+  margin-right: 16px; // Abstand rechts vom Zurück-Button
 }
 
-// Sie können die folgenden Klassen verwenden, um Ihre Schaltflächen anzupassen
-.primary-button {
-  background-color: darkgray; // Primärfarbton für den Button
-  color: white; // Weiße Textfarbe für Kontrast
-}
-
-.secondary-button {
-  background-color: darkgray; // Sekundärfarbton für den Button
-  color: black; // Textfarbe aus den globalen Styles
+// Stil für den Senden-Button
+button[type="submit"] {
+  background-color: #007bff; // Farbe für den Senden-Button
+  color: white; // Textfarbe für den Senden-Button
 }
