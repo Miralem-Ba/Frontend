@@ -15,7 +15,7 @@
   max-width: 500px; // Maximale Breite der Karte
   box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, 0.3); // Leichtere Schatten
   padding: 2rem; // Innerer Abstand
-  background-color: styles.$secondary-color; // Verwenden Sie eine Sekundärfarbe aus Ihren globalen Styles
+  background-color: gray; // Verwenden Sie eine Sekundärfarbe aus Ihren globalen Styles
   border-radius: 8px; // Abgerundete Ecken
 }
 
@@ -48,11 +48,11 @@ button {
 
 // Sie können die folgenden Klassen verwenden, um Ihre Schaltflächen anzupassen
 .primary-button {
-  background-color: styles.$primary-color; // Primärfarbton für den Button
+  background-color: darkgray; // Primärfarbton für den Button
   color: white; // Weiße Textfarbe für Kontrast
 }
 
 .secondary-button {
-  background-color: styles.$secondary-color; // Sekundärfarbton für den Button
-  color: styles.$text-color; // Textfarbe aus den globalen Styles
+  background-color: darkgray; // Sekundärfarbton für den Button
+  color: black; // Textfarbe aus den globalen Styles
 }
