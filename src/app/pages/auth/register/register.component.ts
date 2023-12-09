@@ -15,35 +15,28 @@ import {MatCardModule} from "@angular/material/card";
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-@Component({
-  selector: 'pm-register',
-  standalone: true,
-  imports: [
-    CommonModule, MatInputModule, MatSelectModule,
-    ReactiveFormsModule, MatCheckboxModule, MatButtonModule
-  ],
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
-})
 
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) {
+    this.registerForm = this.formBuilder.group({
+      Salutation:['',Validators.required],
+      FirstName: ['', Validators.required],
+      LastName: ['', Validators.required],
+      Street: ['', Validators.required],
+      Zip: ['', [Validators.required, Validators.pattern('[0-9]*')]],
+      City: ['', Validators.required],
+      Country: ['', Validators.required],
+      Phone: ['', Validators.pattern('[0-9]+')],
+      MobilePhone: ['', Validators.pattern('[0-9]+')],
+      Email: ['', [Validators.required, Validators.email]],
+      Password: ['', [Validators.required, Validators.minLength(8)]]
+    });
+  }
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      street: ['', Validators.required],
-      zip: ['', [Validators.required, Validators.pattern('[0-9]*')]],
-      city: ['', Validators.required],
-      country: ['', Validators.required],
-      phone: ['', Validators.pattern('[0-9]+')],
-      mobilePhone: ['', Validators.pattern('[0-9]+')],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]]
-    });
+
   }
 
   register() {

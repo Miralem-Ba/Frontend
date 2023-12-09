@@ -4,61 +4,61 @@
       <form [formGroup]="registerForm" (ngSubmit)="register()">
         <!-- Anrede -->
         <mat-form-field>
-          <mat-label>Anrede</mat-label>
-          <mat-select formControlName="anrede">
-            <mat-option value="Herr">Herr</mat-option>
-            <mat-option value="Frau">Frau</mat-option>
+          <mat-label>Salutation</mat-label>
+          <mat-select formControlName="Salutation">
+            <mat-option value="Men">Men</mat-option>
+            <mat-option value="Women">Women</mat-option>
           </mat-select>
         </mat-form-field>
 
         <!-- Vorname -->
         <mat-form-field>
-          <input matInput placeholder="Vorname" formControlName="vorname" required>
+          <input matInput placeholder="FirstName" formControlName="FirstName" required>
         </mat-form-field>
 
         <!-- Nachname -->
         <mat-form-field>
-          <input matInput placeholder="Nachname" formControlName="nachname" required>
+          <input matInput placeholder="LastName" formControlName="LastName" required>
         </mat-form-field>
 
         <!-- Straße -->
         <mat-form-field>
-          <input matInput placeholder="Straße" formControlName="strasse" required>
+          <input matInput placeholder="Street" formControlName="Street" required>
         </mat-form-field>
 
         <!-- PLZ -->
         <mat-form-field>
-          <input matInput placeholder="PLZ" formControlName="plz" required>
+          <input matInput placeholder="Zip" formControlName="Zip" required>
         </mat-form-field>
 
         <!-- Ort -->
         <mat-form-field>
-          <input matInput placeholder="Ort" formControlName="ort" required>
+          <input matInput placeholder="City" formControlName="City" required>
         </mat-form-field>
 
         <!-- Land -->
         <mat-form-field>
-          <input matInput placeholder="Land" formControlName="land">
+          <input matInput placeholder="Country" formControlName="Country">
         </mat-form-field>
 
         <!-- Telefonnummer -->
         <mat-form-field>
-          <input matInput placeholder="Telefonnummer" formControlName="telefonnummer" type="tel">
+          <input matInput placeholder="Phone" formControlName="Phone" type="tel">
         </mat-form-field>
 
         <!-- Mobiltelefonnummer -->
         <mat-form-field>
-          <input matInput placeholder="Mobiltelefonnummer" formControlName="mobiltelefonnummer" type="tel">
+          <input matInput placeholder="MobilePhone" formControlName="MobilePhone" type="Tel">
         </mat-form-field>
 
         <!-- E-Mail -->
         <mat-form-field>
-          <input matInput placeholder="E-Mail" formControlName="email" required type="email">
+          <input matInput placeholder="Email" formControlName="Email" required type="Email">
         </mat-form-field>
 
         <!-- Passwort -->
         <mat-form-field>
-          <input matInput placeholder="Passwort" formControlName="password" required type="password">
+          <input matInput placeholder="Password" formControlName="Password" required type="Password">
         </mat-form-field>
 
         <button mat-raised-button color="primary" type="submit">Registrieren</button>
