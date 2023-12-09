@@ -1,5 +1,3 @@
 import {Routes} from "@angular/router";
 
-export let productRoutes: Routes = [{
-
-}];
+export let productRoutes: Routes = [];
