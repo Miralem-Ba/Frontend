@@ -9,5 +9,4 @@ import { CommonModule } from '@angular/common';
   styleUrl: './category-edit-id.component.scss'
 })
 export class CategoryEditIdComponent {
-
 }
