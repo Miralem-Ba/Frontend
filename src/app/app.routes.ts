@@ -1,22 +1,19 @@
-
-import { Routes, RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
-
-
-import { CategoriesComponent } from "./categories/categories.component";
-import { LoginComponent } from './pages/auth/login/login.component';
-import { RegisterComponent } from './pages/auth/register/register.component';
-import {ProductsComponent} from "./pages/products/products.component";
+import {RouterModule, Routes} from '@angular/router';
+import {NgModule} from '@angular/core';
+import {LoginComponent} from './pages/auth/login/login.component';
+import {RegisterComponent} from './pages/auth/register/register.component';
+import {categoryRoutes} from "./categoryRoutes";
+import {productRoutes} from "./productRoutes";
 
 
 export const routes: Routes = [
   {
     path: 'categories',
-    component: CategoriesComponent
+    children: categoryRoutes
   },
   {
     path: 'products',
-    component: ProductsComponent
+    children: productRoutes
   },
   {
     path: 'login',
