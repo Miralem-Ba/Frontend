@@ -1,8 +1,11 @@
+<!-- Container for the form with a material design elevation -->
 <div class="div mat-elevation-z2">
   <mat-card>
     <mat-card-content>
+      <!-- Registration form with Angular reactive form directives -->
       <form [formGroup]="registerForm" (ngSubmit)="register()">
-        <!-- Anrede -->
+
+        <!-- Salutation selection field -->
         <mat-form-field>
           <mat-label>Salutation</mat-label>
           <mat-select formControlName="Salutation">
@@ -11,57 +14,59 @@
           </mat-select>
         </mat-form-field>
 
-        <!-- Vorname -->
+        <!-- First Name input field -->
         <mat-form-field>
           <input matInput placeholder="FirstName" formControlName="FirstName" required>
         </mat-form-field>
 
-        <!-- Nachname -->
+        <!-- Last Name input field -->
         <mat-form-field>
           <input matInput placeholder="LastName" formControlName="LastName" required>
         </mat-form-field>
 
-        <!-- Straße -->
+        <!-- Street input field -->
         <mat-form-field>
           <input matInput placeholder="Street" formControlName="Street" required>
         </mat-form-field>
 
-        <!-- PLZ -->
+        <!-- Zip code input field -->
         <mat-form-field>
           <input matInput placeholder="Zip" formControlName="Zip" required>
         </mat-form-field>
 
-        <!-- Ort -->
+        <!-- City input field -->
         <mat-form-field>
           <input matInput placeholder="City" formControlName="City" required>
         </mat-form-field>
 
-        <!-- Land -->
+        <!-- Country input field -->
         <mat-form-field>
           <input matInput placeholder="Country" formControlName="Country">
         </mat-form-field>
 
-        <!-- Telefonnummer -->
+        <!-- Phone number input field -->
         <mat-form-field>
           <input matInput placeholder="Phone" formControlName="Phone" type="tel">
         </mat-form-field>
 
-        <!-- Mobiltelefonnummer -->
+        <!-- Mobile phone number input field -->
         <mat-form-field>
           <input matInput placeholder="MobilePhone" formControlName="MobilePhone" type="Tel">
         </mat-form-field>
 
-        <!-- E-Mail -->
+        <!-- Email input field -->
         <mat-form-field>
           <input matInput placeholder="Email" formControlName="Email" required type="Email">
         </mat-form-field>
 
-        <!-- Passwort -->
+        <!-- Password input field -->
         <mat-form-field>
           <input matInput placeholder="Password" formControlName="Password" required type="Password">
         </mat-form-field>
+
+        <!-- Submit button for the form -->
         <div class="button">
-        <button mat-raised-button color="primary" type="submit">Registrieren</button>
+          <button mat-raised-button color="primary" type="submit">Register</button>
         </div>
       </form>
     </mat-card-content>

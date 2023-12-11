@@ -7,7 +7,11 @@ import {RouterLink} from "@angular/router";
 @Component({
   selector: 'pm-header',
   standalone: true,
-  imports: [CommonModule, MatToolbarModule, MatButtonModule, MatIconModule, RouterLink],
+  imports: [CommonModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

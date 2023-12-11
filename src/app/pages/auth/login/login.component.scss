@@ -1,14 +1,18 @@
-.center{
-  width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
-  padding: 20px;
-}
-mat-form-field{
-  width: 100%;
+/* Styles for centering and sizing the form */
+.center {
+  width: 400px;           /* Set a fixed width for the form */
+  margin-left: auto;      /* Center the form horizontally (left margin) */
+  margin-right: auto;     /* Center the form horizontally (right margin) */
+  margin-top: 50px;       /* Add space above the form */
+  padding: 20px;          /* Add padding inside the form for spacing */
 }
 
-.midde{
-  text-align: center;
+/* Style for Angular Material form fields */
+mat-form-field {
+  width: 100%;            /* Make form fields occupy 100% of the form's width */
+}
+
+/* Style for centering content, typically buttons or text, inside a div */
+.midde {
+  text-align: center;     /* Center-align the content inside the .midde class */
 }
