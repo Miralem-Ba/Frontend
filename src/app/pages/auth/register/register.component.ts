@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatInputModule} from "@angular/material/input";
@@ -11,7 +11,7 @@ import {MatCardModule} from "@angular/material/card";
 @Component({
   selector: 'pm-register',
   standalone: true,
-  imports: [CommonModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatCheckboxModule, MatButtonModule, MatCardModule],
+    imports: [CommonModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatCheckboxModule, MatButtonModule, MatCardModule, FormsModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
@@ -38,7 +38,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
 
   }
-
   register() {
     if (this.registerForm.valid) {
       console.log('Registration data:', this.registerForm.value);

@@ -8,7 +8,12 @@ import {RouterLink} from "@angular/router";
 @Component({
   selector: 'pm-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatInputModule, ReactiveFormsModule, MatButtonModule, RouterLink],
+  imports: [CommonModule,
+    FormsModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
