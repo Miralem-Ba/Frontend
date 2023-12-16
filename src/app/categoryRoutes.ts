@@ -29,6 +29,7 @@ export let categoryRoutes: Routes = [
     // Route for creating a new category
     path: 'create',
     // Dynamically load the CategoryCreateComponent when the route is activated
+
     loadComponent: () => import("./pages/category/category-create/category-create.component").then(val => val.CategoryCreateComponent),
     // component: CategoryCreateComponent,
     // Protect this route with the authGuard
