@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
-import { RouterLink } from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
+import {UserControllerService} from "../../../openapi-client";
+
 
 /**
  * LoginComponent - handles user login process.
@@ -23,10 +25,14 @@ import { RouterLink } from "@angular/router";
   styleUrl: './login.component.scss'    // Link to the component's stylesheet
 })
 export class LoginComponent {
+
+
+router =inject(Router)
+
   // FormGroup to manage login form data and validation
   fromGroup = new FormGroup({
-    email: new FormControl(null, [Validators.pattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,10}$/), Validators.required]),
-    password: new FormControl()
+    email: new FormControl<string>("", [Validators.pattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,10}$/), Validators.required]),
+    password: new FormControl<string>("")
   });
 
   /**
@@ -37,8 +43,18 @@ export class LoginComponent {
   submit() {
     console.log(this.fromGroup);
     if (this.fromGroup.valid) {
+      this.userControllerService.login({
+        email: this.fromGroup.getRawValue().email!,
+        password: this.fromGroup.getRawValue().password!,
+      }).subscribe((response)=>{
+        console.log(response.token)
+      localStorage.setItem("ACCESS_TOKEN", response.token!)
       // Perform login operations here
-
-    }
+    })
+  }
+  }
+  constructor(
+    private readonly userControllerService: UserControllerService
+  ) {
   }
 }
