@@ -4,11 +4,12 @@ import {CategoryControllerService, CategoryShowDto} from "../../../openapi-clien
 import {MatIconModule} from "@angular/material/icon";
 import {MatTableModule} from "@angular/material/table";
 import {MatButtonModule} from "@angular/material/button";
+import {ShowAsAdminDirective} from "../../../directives/show-as-admin.directive";
 
 @Component({
   selector: 'pm-category-list',
   standalone: true,
-  imports: [CommonModule, MatIconModule, MatTableModule, MatButtonModule],
+  imports: [CommonModule, MatIconModule, MatTableModule, MatButtonModule, ShowAsAdminDirective],
   templateUrl: './category-list.component.html',
   styleUrl: './category-list.component.scss'
 })
