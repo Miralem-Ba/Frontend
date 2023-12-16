@@ -1,0 +1,674 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>product-manager-frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">product-manager-frontend documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  RegisterComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/auth/register/register.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>pm-register</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">Standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>MatInputModule</code>
+                            <code>MatSelectModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>MatCheckboxModule</code>
+                            <code>MatButtonModule</code>
+                            <code>MatCardModule</code>
+                            <code>FormsModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./register.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./register.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#registerForm" >registerForm</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#register" >register</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(formBuilder: FormBuilder)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/pages/auth/register/register.component.ts:20</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>formBuilder</td>
+                                                  
+                                                        <td>
+                                                                    <code>FormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="38"
+                                    class="link-to-prism">src/app/pages/auth/register/register.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="register"></a>
+                    <span class="name">
+                        <span ><b>register</b></span>
+                        <a href="#register"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>register()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="41"
+                                    class="link-to-prism">src/app/pages/auth/register/register.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registerForm"></a>
+                    <span class="name">
+                        <span ><b>registerForm</b></span>
+                        <a href="#registerForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/pages/auth/register/register.component.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component, OnInit} from &quot;@angular/core&quot;;
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from &quot;@angular/forms&quot;;
+import {MatButtonModule} from &quot;@angular/material/button&quot;;
+import {MatCheckboxModule} from &quot;@angular/material/checkbox&quot;;
+import {MatInputModule} from &quot;@angular/material/input&quot;;
+import {MatSelectModule} from &quot;@angular/material/select&quot;;
+import {CommonModule} from &quot;@angular/common&quot;;
+import {MatCardModule} from &quot;@angular/material/card&quot;;
+
+
+@Component({
+  selector: &#x27;pm-register&#x27;,
+  standalone: true,
+    imports: [CommonModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatCheckboxModule, MatButtonModule, MatCardModule, FormsModule],
+  templateUrl: &#x27;./register.component.html&#x27;,
+  styleUrls: [&#x27;./register.component.scss&#x27;]
+})
+
+export class RegisterComponent implements OnInit {
+  registerForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {
+    this.registerForm &#x3D; this.formBuilder.group({
+      Salutation:[&#x27;&#x27;,Validators.required],
+      FirstName: [&#x27;&#x27;, Validators.required],
+      LastName: [&#x27;&#x27;, Validators.required],
+      Street: [&#x27;&#x27;, Validators.required],
+      Zip: [&#x27;&#x27;, [Validators.required, Validators.pattern(&#x27;[0-9]*&#x27;)]],
+      City: [&#x27;&#x27;, Validators.required],
+      Country: [&#x27;&#x27;, Validators.required],
+      Phone: [&#x27;&#x27;, Validators.pattern(&#x27;[0-9]+&#x27;)],
+      MobilePhone: [&#x27;&#x27;, Validators.pattern(&#x27;[0-9]+&#x27;)],
+      Email: [&#x27;&#x27;, [Validators.required, Validators.email]],
+      Password: [&#x27;&#x27;, [Validators.required, Validators.minLength(8)]]
+    });
+  }
+
+  ngOnInit() {
+
+  }
+  register() {
+    if (this.registerForm.valid) {
+      console.log(&#x27;Registration data:&#x27;, this.registerForm.value);
+    } else {
+      console.log(&#x27;Form is not valid&#x27;);
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;div mat-elevation-z2&quot;&gt;
+  &lt;mat-card&gt;
+    &lt;mat-card-content&gt;
+      &lt;form [formGroup]&#x3D;&quot;registerForm&quot; (ngSubmit)&#x3D;&quot;register()&quot;&gt;
+        &lt;!-- Anrede --&gt;
+        &lt;mat-form-field&gt;
+          &lt;mat-label&gt;Salutation&lt;/mat-label&gt;
+          &lt;mat-select formControlName&#x3D;&quot;Salutation&quot;&gt;
+            &lt;mat-option value&#x3D;&quot;Men&quot;&gt;Men&lt;/mat-option&gt;
+            &lt;mat-option value&#x3D;&quot;Women&quot;&gt;Women&lt;/mat-option&gt;
+          &lt;/mat-select&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;!-- Vorname --&gt;
+        &lt;mat-form-field&gt;
+          &lt;input matInput placeholder&#x3D;&quot;FirstName&quot; formControlName&#x3D;&quot;FirstName&quot; required&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;!-- Nachname --&gt;
+        &lt;mat-form-field&gt;
+          &lt;input matInput placeholder&#x3D;&quot;LastName&quot; formControlName&#x3D;&quot;LastName&quot; required&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;!-- Straße --&gt;
+        &lt;mat-form-field&gt;
+          &lt;input matInput placeholder&#x3D;&quot;Street&quot; formControlName&#x3D;&quot;Street&quot; required&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;!-- PLZ --&gt;
+        &lt;mat-form-field&gt;
+          &lt;input matInput placeholder&#x3D;&quot;Zip&quot; formControlName&#x3D;&quot;Zip&quot; required&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;!-- Ort --&gt;
+        &lt;mat-form-field&gt;
+          &lt;input matInput placeholder&#x3D;&quot;City&quot; formControlName&#x3D;&quot;City&quot; required&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;!-- Land --&gt;
+        &lt;mat-form-field&gt;
+          &lt;input matInput placeholder&#x3D;&quot;Country&quot; formControlName&#x3D;&quot;Country&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;!-- Telefonnummer --&gt;
+        &lt;mat-form-field&gt;
+          &lt;input matInput placeholder&#x3D;&quot;Phone&quot; formControlName&#x3D;&quot;Phone&quot; type&#x3D;&quot;tel&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;!-- Mobiltelefonnummer --&gt;
+        &lt;mat-form-field&gt;
+          &lt;input matInput placeholder&#x3D;&quot;MobilePhone&quot; formControlName&#x3D;&quot;MobilePhone&quot; type&#x3D;&quot;Tel&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;!-- E-Mail --&gt;
+        &lt;mat-form-field&gt;
+          &lt;input matInput placeholder&#x3D;&quot;Email&quot; formControlName&#x3D;&quot;Email&quot; required type&#x3D;&quot;Email&quot;&gt;
+        &lt;/mat-form-field&gt;
+
+        &lt;!-- Passwort --&gt;
+        &lt;mat-form-field&gt;
+          &lt;input matInput placeholder&#x3D;&quot;Password&quot; formControlName&#x3D;&quot;Password&quot; required type&#x3D;&quot;Password&quot;&gt;
+        &lt;/mat-form-field&gt;
+        &lt;div class&#x3D;&quot;button&quot;&gt;
+        &lt;button mat-raised-button color&#x3D;&quot;primary&quot; type&#x3D;&quot;submit&quot;&gt;Registrieren&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/form&gt;
+    &lt;/mat-card-content&gt;
+  &lt;/mat-card&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./register.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.div{
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    padding: 20px;
+}
+
+mat-form-field{
+  width: 100%;
+}
+.button{
+  text-align: center;
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="div mat-elevation-z2">  <mat-card>    <mat-card-content>      <form [formGroup]="registerForm" (ngSubmit)="register()">        <!-- Anrede -->        <mat-form-field>          <mat-label>Salutation</mat-label>          <mat-select formControlName="Salutation">            <mat-option value="Men">Men</mat-option>            <mat-option value="Women">Women</mat-option>          </mat-select>        </mat-form-field>        <!-- Vorname -->        <mat-form-field>          <input matInput placeholder="FirstName" formControlName="FirstName" required>        </mat-form-field>        <!-- Nachname -->        <mat-form-field>          <input matInput placeholder="LastName" formControlName="LastName" required>        </mat-form-field>        <!-- Straße -->        <mat-form-field>          <input matInput placeholder="Street" formControlName="Street" required>        </mat-form-field>        <!-- PLZ -->        <mat-form-field>          <input matInput placeholder="Zip" formControlName="Zip" required>        </mat-form-field>        <!-- Ort -->        <mat-form-field>          <input matInput placeholder="City" formControlName="City" required>        </mat-form-field>        <!-- Land -->        <mat-form-field>          <input matInput placeholder="Country" formControlName="Country">        </mat-form-field>        <!-- Telefonnummer -->        <mat-form-field>          <input matInput placeholder="Phone" formControlName="Phone" type="tel">        </mat-form-field>        <!-- Mobiltelefonnummer -->        <mat-form-field>          <input matInput placeholder="MobilePhone" formControlName="MobilePhone" type="Tel">        </mat-form-field>        <!-- E-Mail -->        <mat-form-field>          <input matInput placeholder="Email" formControlName="Email" required type="Email">        </mat-form-field>        <!-- Passwort -->        <mat-form-field>          <input matInput placeholder="Password" formControlName="Password" required type="Password">        </mat-form-field>        <div class="button">        <button mat-raised-button color="primary" type="submit">Registrieren</button>        </div>      </form>    </mat-card-content>  </mat-card></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'pm-root'},{'name': 'CategoriesComponent', 'selector': 'pm-categories'},{'name': 'CategoryCreateComponent', 'selector': 'pm-category-create'},{'name': 'CategoryEditIdComponent', 'selector': 'pm-category-edit-id'},{'name': 'CategoryIdComponent', 'selector': 'pm-category-id'},{'name': 'CategoryListComponent', 'selector': 'pm-category-list'},{'name': 'DetailComponent', 'selector': 'pm-detail'},{'name': 'EditComponent', 'selector': 'pm-edit'},{'name': 'FooterComponent', 'selector': 'pm-footer'},{'name': 'HeaderComponent', 'selector': 'pm-header'},{'name': 'LoginComponent', 'selector': 'pm-login'},{'name': 'ModifyComponent', 'selector': 'pm-modify'},{'name': 'PagesComponent', 'selector': 'pm-pages'},{'name': 'ProductsComponent', 'selector': 'pm-products'},{'name': 'ProductsCreateComponent', 'selector': 'pm-products-create'},{'name': 'ProductsDetailComponent', 'selector': 'pm-products-detail'},{'name': 'ProductsListComponent', 'selector': 'pm-products-list'},{'name': 'RegisterComponent', 'selector': 'pm-register'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'RegisterComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'RegisterComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
