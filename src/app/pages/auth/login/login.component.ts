@@ -33,10 +33,12 @@ export class LoginComponent {
    * Handle form submission.
    * Logs the form data and performs login if the form is valid.
    */
+
   submit() {
     console.log(this.fromGroup);
     if (this.fromGroup.valid) {
       // Perform login operations here
+
     }
   }
 }
