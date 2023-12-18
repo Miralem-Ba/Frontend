@@ -8,6 +8,7 @@ import {RouterLink, RouterModule, RouterOutlet} from '@angular/router';
 // Import custom components for the application layout
 import {FooterComponent} from "./elements/footer/footer.component";
 import {HeaderComponent} from "./elements/header/header.component";
+import {CategoryControllerService, ProductControllerService, UserControllerService} from "./openapi-client";
 
 /**
  * The AppComponent acts as the root component for the application.
@@ -29,16 +30,14 @@ import {HeaderComponent} from "./elements/header/header.component";
 })
 export class AppComponent {
   title = 'product-manager-frontend'; // Title property used in the template
-  // constructor(
-    // private readonly productControllerService: ProductControllerService,
-    // private readonly categoryControllerService: CategoryControllerService,
-    // private readonly userControllerService: UserControllerService
-  // ) {
-  //   this.productControllerService.getAllProducts().subscribe((products: any) => {
-  //     this.productControllerService.createProduct;
-  //     this.categoryControllerService.createProduct;
-  //     this.userControllerService.createProduct;
-
-    // })
-  // }
+  constructor(
+    private readonly productControllerService: ProductControllerService,
+    private readonly categoryControllerService: CategoryControllerService,
+    private readonly userControllerService: UserControllerService
+  ) {
+    console.log("usertestlog");
+    this.userControllerService.getAllUsers().subscribe(users => console.log(users));
+    this.categoryControllerService.getCategoryById(1).subscribe(category => console.log(category));
+    this.productControllerService.getAllProducts().subscribe(product => console.log(product));
+  }
 }
