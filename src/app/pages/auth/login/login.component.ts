@@ -5,6 +5,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import {Router, RouterLink} from "@angular/router";
 import {UserControllerService} from "../../../openapi-client";
+import {MatCardModule} from "@angular/material/card";
 
 
 /**
@@ -19,42 +20,40 @@ import {UserControllerService} from "../../../openapi-client";
     MatInputModule,     // Angular Material module for input fields
     ReactiveFormsModule, // Supports reactive form approach
     MatButtonModule,    // Angular Material module for buttons
-    RouterLink          // Directive for linking routes in templates
+    RouterLink,
+    MatCardModule,
+    // Directive for linking routes in templates
   ],
   templateUrl: './login.component.html', // Link to the component's HTML template
   styleUrl: './login.component.scss'    // Link to the component's stylesheet
 })
 export class LoginComponent {
-
-
-router =inject(Router)
-
-  // FormGroup to manage login form data and validation
   fromGroup = new FormGroup({
-    email: new FormControl<string>("", [Validators.pattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,10}$/), Validators.required]),
-    password: new FormControl<string>("")
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required])
   });
 
-  /**
-   * Handle form submission.
-   * Logs the form data and performs login if the form is valid.
-   */
+  loginErrorMessage: string | null = null;
 
-  submit() {
-    console.log(this.fromGroup);
+  constructor(
+    private userControllerService: UserControllerService,
+    private router: Router
+  ) {}
+
+  submit(): void {
     if (this.fromGroup.valid) {
       this.userControllerService.login({
-        email: this.fromGroup.getRawValue().email!,
-        password: this.fromGroup.getRawValue().password!,
-      }).subscribe((response)=>{
-        console.log(response.token)
-      localStorage.setItem("ACCESS_TOKEN", response.token!)
-      // Perform login operations here
-    })
-  }
-  }
-  constructor(
-    private readonly userControllerService: UserControllerService
-  ) {
+        email: this.fromGroup.value.email,
+        password: this.fromGroup.value.password
+      }).subscribe({
+        next: (response) => {
+          // Hier Logik nach erfolgreichem Login
+          this.router.navigate(['/products/list']); // Beispielpfad
+        },
+        error: (error) => {
+          this.loginErrorMessage = "Login fehlgeschlagen. Bitte überprüfen Sie Ihre Anmeldeinformationen.";
+        }
+      });
+    }
   }
 }
