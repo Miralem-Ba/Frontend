@@ -8,6 +8,7 @@ import { CommonModule } from "@angular/common";
 import { MatCardModule } from "@angular/material/card";
 import { Router } from "@angular/router";
 import { UserControllerService } from "../../../openapi-client"; // Pfad anpassen
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'pm-register',
@@ -48,19 +49,42 @@ export class RegisterComponent {
   }
 
   register() {
-    if (this.registerForm.valid!) {
-      this.userControllerService.register(this.registerForm.value!).subscribe({
+    if (this.registerForm.valid) {
+      this.userControllerService.register(this.registerForm.value).subscribe({
         next: (response) => {
-          // Hier können Sie nach erfolgreicher Registrierung navigieren
-          this.router.navigate(['/login']);
+          // SweetAlert2 Erfolgsmeldung anzeigen
+          Swal.fire({
+            title: 'Registration successful',
+            text: 'You can now log in :)',
+            icon: 'success',
+            confirmButtonText: 'OK',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // Benutzer nach Bestätigung zur Login-Seite navigieren
+              this.router.navigate(['/login']);
+            }
+          });
           console.log('Registration successful', response);
         },
         error: (error) => {
-          // Fehlerbehandlung
+          // Fehlerbehandlung mit SweetAlert2
+          Swal.fire({
+            title: 'Registration failed',
+            text: error.error.message || 'An unexpected error occurred :/',
+            icon: 'error',
+            confirmButtonText: 'OK',
+          });
           console.error('Registration failed', error);
         }
       });
     } else {
+      // Ungültige Formularhandhabung
+      Swal.fire({
+        title: 'Invalid Form',
+        text: 'Please fill out the form correctly',
+        icon: 'info',
+        confirmButtonText: 'OK',
+      });
       console.error('Form is not valid');
     }
   }
