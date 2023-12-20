@@ -48,7 +48,10 @@ export class LoginComponent {
       }).subscribe({
         next: (response) => {
           // Hier Logik nach erfolgreichem Login
-          this.router.navigate(['/products/list']); // Beispielpfad
+          this.router.navigate(['/products/list']).then(()=>{
+            localStorage.setItem("ACCESS_TOKEN",response.token)
+          })
+
         },
         error: (error) => {
           this.loginErrorMessage = "Login fehlgeschlagen. Bitte überprüfen Sie Ihre Anmeldeinformationen.";
