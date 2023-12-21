@@ -44,8 +44,8 @@ export class LoginComponent {
         next: (response) => {
           localStorage.setItem("ACCESS_TOKEN", response.token!);
           Swal.fire({
-            title: 'Erfolgreich angemeldet',
-            text: 'Sie sind jetzt eingeloggt.',
+            title: 'Successfully logged in',
+            text: 'You are now logged in',
             icon: 'success',
             confirmButtonText: 'OK'
           }).then(() => {
@@ -54,8 +54,8 @@ export class LoginComponent {
         },
         error: () => {
           Swal.fire({
-            title: 'Anmeldung fehlgeschlagen',
-            text: 'Bitte überprüfen Sie Ihre Anmeldeinformationen.',
+            title: 'Login failed',
+            text: 'Please check your login information',
             icon: 'error',
             confirmButtonText: 'OK'
           });
@@ -63,8 +63,8 @@ export class LoginComponent {
       });
     } else {
       Swal.fire({
-        title: 'Ungültiges Formular',
-        text: 'Bitte füllen Sie alle erforderlichen Felder korrekt aus.',
+        title: 'Invalid form',
+        text: 'Please fill in all required fields correctly',
         icon: 'warning',
         confirmButtonText: 'OK'
       });
