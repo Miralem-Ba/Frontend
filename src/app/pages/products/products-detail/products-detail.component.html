@@ -1,1 +1,27 @@
-<p>products-detail works!</p>
+<!-- Main container for product details, with a centered column layout -->
+<div class="flex flex-col items-center justify-center h-screen">
+
+  <!-- Glass-style card container for displaying product details -->
+  <div class="card glass lg:card-side text-neutral-content w-3/4 mb-4">
+    <figure class="p-6">
+      <!-- Image of the product -->
+      <img src="{{product?.image}}" alt="Product" class="rounded-lg shadow-lg h-48" />
+    </figure>
+    <div class="card-body">
+      <!-- Product name -->
+      <h2 class="card-title text-primary">{{product?.name}}</h2>
+      <!-- Product description -->
+      <p class="mb-4">Description: {{product?.description}}</p>
+      <!-- Product category -->
+      <p class="mb-4">Category: {{product?.category?.name}}</p>
+      <!-- Container for price and stock -->
+      <div class="justify-self-end mt-auto">
+        <div class="badge badge-outline p-4 mr-2">{{product?.price | currency}}</div>
+        <div class="badge badge-outline p-4">{{product?.stock}} in stock</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back button at the bottom -->
+  <button class="btn btn-primary" (click)="navigateBack()">Go Back</button>
+</div>

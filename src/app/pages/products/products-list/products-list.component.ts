@@ -16,7 +16,7 @@ import {ShowAsAdminDirective} from "../../../directives/show-as-admin.directive"
 export class ProductsListComponent {
   products: Array<ProductShowDto> = [];
   columnDefinition: string[] = ['name','id','price','stock','image','sku','action'];
-
+  pmShowAsAdmin: boolean = false;
   constructor(private  readonly productControllerService: ProductControllerService) {
     this.productControllerService.getAllProducts().subscribe(products => {
       this.products = products;

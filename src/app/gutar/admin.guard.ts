@@ -12,7 +12,7 @@ export const adminGuard: CanActivateFn = (route, state) => {
   try {
     const token = localStorage.getItem('ACCESS_TOKEN');
     if (token) {
-      const payload: TokenPayload = jwtDecode(token);
+      const payload: TokenPayload = jwtDecode(token); // Verwenden Sie jwtDecode direkt
       if (payload.roles.includes('admin')) {
         return true;
       }
