@@ -1,38 +1,33 @@
-import {Component, inject} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
-import {Router, RouterLink} from "@angular/router";
-import {UserControllerService} from "../../../openapi-client";
-import {MatCardModule} from "@angular/material/card";
+import { Router, RouterLink } from "@angular/router";
+import { UserControllerService } from "../../../openapi-client";
+import Swal from 'sweetalert2';
+import {MatCardModule} from "@angular/material/card";  // Importieren von SweetAlert2
 
-
-/**
- * LoginComponent - handles user login process.
- */
 @Component({
-  selector: 'pm-login',  // The selector to use this component in HTML
-  standalone: true,     // Enables standalone component usage without an NgModule
+  selector: 'pm-login',
+  standalone: true,
   imports: [
-    CommonModule,       // Provides Angular directives like ngIf and ngFor
-    FormsModule,        // Supports template-driven forms
-    MatInputModule,     // Angular Material module for input fields
-    ReactiveFormsModule, // Supports reactive form approach
-    MatButtonModule,    // Angular Material module for buttons
+    CommonModule,
+    FormsModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatButtonModule,
     RouterLink,
-    MatCardModule,
-    // Directive for linking routes in templates
+    MatCardModule
   ],
-  templateUrl: './login.component.html', // Link to the component's HTML template
-  styleUrl: './login.component.scss'    // Link to the component's stylesheet
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  fromGroup = new FormGroup({
+  formGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required])
+    password: new FormControl('', Validators.required)
   });
-
   loginErrorMessage: string | null = null;
 
   constructor(
@@ -41,21 +36,37 @@ export class LoginComponent {
   ) {}
 
   submit(): void {
-    if (this.fromGroup.valid) {
+    if (this.formGroup.valid) {
       this.userControllerService.login({
-        email: this.fromGroup.value.email,
-        password: this.fromGroup.value.password
+        email: this.formGroup.value.email,
+        password: this.formGroup.value.password
       }).subscribe({
         next: (response) => {
-          // Hier Logik nach erfolgreichem Login
-          this.router.navigate(['/products/list']).then(()=>{
-            localStorage.setItem("ACCESS_TOKEN",response.token)
-          })
-
+          localStorage.setItem("ACCESS_TOKEN", response.token!);
+          Swal.fire({
+            title: 'Erfolgreich angemeldet',
+            text: 'Sie sind jetzt eingeloggt.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          }).then(() => {
+            this.router.navigate(['/products/list']);
+          });
         },
-        error: (error) => {
-          this.loginErrorMessage = "Login fehlgeschlagen. Bitte überprüfen Sie Ihre Anmeldeinformationen.";
+        error: () => {
+          Swal.fire({
+            title: 'Anmeldung fehlgeschlagen',
+            text: 'Bitte überprüfen Sie Ihre Anmeldeinformationen.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
         }
+      });
+    } else {
+      Swal.fire({
+        title: 'Ungültiges Formular',
+        text: 'Bitte füllen Sie alle erforderlichen Felder korrekt aus.',
+        icon: 'warning',
+        confirmButtonText: 'OK'
       });
     }
   }

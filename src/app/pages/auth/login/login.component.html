@@ -3,7 +3,7 @@
   <mat-card>
     <mat-card-content>
       <!-- Login form with Angular reactive form directives -->
-      <form [formGroup]="fromGroup" (ngSubmit)="submit()">
+      <form [formGroup]="formGroup" (ngSubmit)="submit()">
 
         <!-- Error message, if any -->
         <div *ngIf="loginErrorMessage" class="error-message">
