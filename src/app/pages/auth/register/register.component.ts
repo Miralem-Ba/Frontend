@@ -55,7 +55,7 @@ export class RegisterComponent {
           // SweetAlert2 Erfolgsmeldung anzeigen
           Swal.fire({
             title: 'Registration successful',
-            text: 'You can now log in :)',
+            text: 'You can log in now :)',
             icon: 'success',
             confirmButtonText: 'OK',
           }).then((result) => {
@@ -70,7 +70,7 @@ export class RegisterComponent {
           // Fehlerbehandlung mit SweetAlert2
           Swal.fire({
             title: 'Registration failed',
-            text: error.error.message || 'An unexpected error occurred :/',
+            text: error.error.message || 'An unexpected error has occurred :/',
             icon: 'error',
             confirmButtonText: 'OK',
           });
@@ -81,7 +81,7 @@ export class RegisterComponent {
       // Ungültige Formularhandhabung
       Swal.fire({
         title: 'Invalid Form',
-        text: 'Please fill out the form correctly',
+        text: 'Please complete the form correctly',
         icon: 'info',
         confirmButtonText: 'OK',
       });

@@ -64,7 +64,7 @@ export class LoginComponent {
     } else {
       Swal.fire({
         title: 'Invalid form',
-        text: 'Please fill in all required fields correctly',
+        text: 'Please complete all required fields correctly',
         icon: 'warning',
         confirmButtonText: 'OK'
       });
