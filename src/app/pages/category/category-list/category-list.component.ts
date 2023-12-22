@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CategoryControllerService, CategoryShowDto } from "../../../openapi-client";
 import { MatIconModule } from "@angular/material/icon";
 import { MatTableModule } from "@angular/material/table";
 import { MatButtonModule } from "@angular/material/button";
-import { Router } from '@angular/router'; // Import Router for navigation
-import Swal from 'sweetalert2'; // Optional, for alerts
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
+import {
+  CategoryControllerService,
+  CategoryShowDto,
+  CategoryUpdateDto
+} from "../../../openapi-client";
 
 @Component({
   selector: 'pm-category-list',
@@ -14,57 +19,67 @@ import Swal from 'sweetalert2'; // Optional, for alerts
   templateUrl: './category-list.component.html',
   styleUrls: ['./category-list.component.scss']
 })
-export class CategoryListComponent {
+export class CategoryListComponent implements OnInit {
   columnNames: string[] = ['name', 'id', 'action'];
   allCategories: CategoryShowDto[] = [];
 
   constructor(
     private categoryControllerService: CategoryControllerService,
-    private router: Router // Inject the Router
-  ) {
+    private router: Router
+  ) {}
+
+  ngOnInit() {
+    this.getAllCategories();
+  }
+
+  getAllCategories(): void {
     this.categoryControllerService.getAllCategories().subscribe(categories => {
       this.allCategories = categories;
-    });
-  }
-
-  editCategory(categoryId: number): void {
-    // Navigate to the category edit page with the category ID
-    this.router.navigate(['/category/edit', categoryId]);
-  }
-
-  deleteCategory(categoryId: number): void {
-    // Confirm before deletion
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!'
-    }).then((result) => {
-      if (result.value) {
-        this.categoryControllerService.deleteCategoryById(categoryId).subscribe(() => {
-          Swal.fire(
-            'Deleted!',
-            'The category has been deleted.',
-            'success'
-          );
-          // Update the list of categories
-          this.allCategories = this.allCategories.filter(c => c.id !== categoryId);
-        }, error => {
-          console.error('Error deleting the category:', error);
-          Swal.fire(
-            'Failed!',
-            'There was an error deleting the category.',
-            'error'
-          );
-        });
-      }
+    }, error => {
+      console.error('Error fetching categories:', error);
     });
   }
 
   createCategory(): void {
-    // Navigate to the category creation page
     this.router.navigate(['/category/create']);
+  }
+
+  editCategory(categoryId: number): void {
+    this.router.navigate(['/category/edit', categoryId]);
+  }
+
+  updateCategory(category: CategoryShowDto): void {
+    const updatePayload: CategoryUpdateDto = {
+      // Sie müssen die Eigenschaften von CategoryShowDto auf CategoryUpdateDto abbilden
+      name: category.name,
+      active: true // Dies ist ein Beispielwert
+    };
+
+    this.categoryControllerService.updateCategoryById(category.id, updatePayload).subscribe(() => {
+      Swal.fire('Success', 'Category updated successfully', 'success');
+      this.getAllCategories();
+    }, error => {
+      console.error('Error updating category:', error);
+    });
+  }
+
+  deleteCategory(categoryId: number): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'This action cannot be undone!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel'
+    }).then((result) => {
+      if (result.value) {
+        this.categoryControllerService.deleteCategoryById(categoryId).subscribe(() => {
+          Swal.fire('Deleted!', 'Category has been deleted.', 'success');
+          this.getAllCategories();
+        }, error => {
+          console.error('Error deleting category:', error);
+        });
+      }
+    });
   }
 }
