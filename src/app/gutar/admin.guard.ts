@@ -1,26 +1,40 @@
 import { inject } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
-import { jwtDecode} from 'jwt-decode';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import jwt_decode, {jwtDecode} from 'jwt-decode'; // Achten Sie darauf, dass die Import-Anweisung dem tatsächlichen Importpfad entspricht
 
 interface TokenPayload {
   roles: string[];
 }
 
-export const adminGuard: CanActivateFn = (route, state) => {
-  const router = inject(Router);
+export class AdminGuard implements CanActivate {
 
-  try {
+  constructor(private router: Router) {}
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const token = localStorage.getItem('ACCESS_TOKEN');
-    if (token) {
-      const payload: TokenPayload = jwtDecode(token); // Verwenden Sie jwtDecode direkt
-      if (payload.roles.includes('admin')) {
+    if (!token) {
+      this.navigateToLogin();
+      return false;
+    }
+
+    try {
+      const payload: TokenPayload = jwtDecode<TokenPayload>(token);
+      if (this.isUserAdmin(payload)) {
         return true;
       }
+    } catch (error) {
+      console.error('Error decoding token', error);
     }
-  } catch (error) {
-    console.error('Error decoding token', error);
+
+    this.navigateToLogin();
+    return false;
   }
 
-  router.navigate(['/auth/login']);
-  return false;
-};
+  private isUserAdmin(payload: TokenPayload): boolean {
+    return payload.roles.includes('admin');
+  }
+
+  private navigateToLogin(): void {
+    this.router.navigate(['/auth/login']);
+  }
+}
