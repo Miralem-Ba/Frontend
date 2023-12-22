@@ -23,16 +23,16 @@ export class ProductsListComponent {
     private readonly productControllerService: ProductControllerService,
     private router: Router // Inject the router for navigation
   ) {
-    this.productControllerService.getAllProducts().subscribe(products => {
-      this.products = products;
-    });
+    // Methode getAllProducts wird hier aufgerufen, um alle Produkte beim Initialisieren zu holen
+    this.getAllProducts();
   }
 
+  // Diese Methode navigiert zur Bearbeitungsseite des Produkts
   editProduct(productId: number): void {
-    // Navigate to the product edit page with the product ID
-    this.router.navigate(['/product/detail', productId]);
+    this.router.navigate(['/product/edit', productId]);
   }
 
+  // Diese Methode ruft die API auf, um das Produkt zu löschen
   deleteProduct(productId: number): void {
     // Confirm before deletion
     Swal.fire({
@@ -43,10 +43,8 @@ export class ProductsListComponent {
       icon: 'warning'
     }).then((result) => {
       if (result.isConfirmed) {
-        // Call the service to delete the product
         this.productControllerService.deleteProductById(productId).subscribe({
           next: () => {
-            // Remove the product from the list or refresh the list
             this.products = this.products.filter(product => product.id !== productId);
             Swal.fire('Deleted!', 'The product has been deleted.', 'success');
           },
@@ -58,8 +56,21 @@ export class ProductsListComponent {
     });
   }
 
+  // Diese Methode navigiert zur Erstellungsseite für ein neues Produkt
   createProduct(): void {
-    // Navigate to the product creation page
     this.router.navigate(['/product/create']);
+  }
+
+  // Methode um alle Produkte zu holen
+  getAllProducts(): void {
+    this.productControllerService.getAllProducts().subscribe({
+      next: (products) => {
+        this.products = products;
+      },
+      error: (error) => {
+        console.error('Error fetching products:', error);
+        // Optional: Benutzer benachrichtigen, dass ein Fehler aufgetreten ist
+      }
+    });
   }
 }
