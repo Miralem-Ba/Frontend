@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, signal} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from "@angular/material/icon";
 import { MatTableModule } from "@angular/material/table";
@@ -22,6 +22,7 @@ import {
 export class CategoryListComponent implements OnInit {
   columnNames: string[] = ['name', 'id', 'action'];
   allCategories: CategoryShowDto[] = [];
+  onCreate = signal<any | null>(null);
 
   constructor(
     private categoryControllerService: CategoryControllerService,
