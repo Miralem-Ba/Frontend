@@ -1,67 +1,67 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatButtonModule } from "@angular/material/button";
-import { MatIconModule } from "@angular/material/icon";
-import { MatTableModule } from "@angular/material/table";
-import { Router } from '@angular/router'; // Import Router for navigation
+import {Component, signal} from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductControllerService, ProductShowDto } from "../../../openapi-client";
-import { ShowAsAdminDirective } from "../../../directives/show-as-admin.directive";
-import Swal from 'sweetalert2'; // Wenn Sie SweetAlert2 für Benachrichtigungen verwenden möchten
+import Swal from 'sweetalert2';
+import {MatIconModule} from "@angular/material/icon";
+import {MatTableModule} from "@angular/material/table";
+import {MatButtonModule} from "@angular/material/button";
 
 @Component({
   selector: 'pm-products-list',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule, MatTableModule, ShowAsAdminDirective],
+  imports: [
+    MatIconModule,
+    MatTableModule,
+    MatButtonModule,
+    // ... Ihre Importe ...
+  ],
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.scss']
 })
 export class ProductsListComponent {
   products: Array<ProductShowDto> = [];
   columnDefinition: string[] = ['name','id','price','stock','image','sku','action'];
-
   constructor(
-    private readonly productControllerService: ProductControllerService,
-    private router: Router // Inject the router for navigation
+    private productControllerService: ProductControllerService,
+    private router: Router
   ) {
-    // Methode getAllProducts wird hier aufgerufen, um alle Produkte beim Initialisieren zu holen
     this.getAllProducts();
   }
 
-  // Diese Methode navigiert zur Bearbeitungsseite des Produkts
-  editProduct(productId: number): void {
-    this.router.navigate(['/product/edit', productId]);
+  onEdit(id: number): void {
+    // Hier navigieren Sie zur Bearbeitungsseite des Produkts
+    this.router.navigate(['/product/edit', id]);
   }
 
-  // Diese Methode ruft die API auf, um das Produkt zu löschen
-  deleteProduct(productId: number): void {
-    // Confirm before deletion
+  onDelete(id: number): void {
+    // Bestätigungsdialog vor dem Löschen
     Swal.fire({
-      title: 'Are you sure you want to delete this product?',
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Delete',
-      cancelButtonText: 'Cancel',
-      icon: 'warning'
+      confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.productControllerService.deleteProductById(productId).subscribe({
+        this.productControllerService.deleteProductById(id).subscribe({
           next: () => {
-            this.products = this.products.filter(product => product.id !== productId);
-            Swal.fire('Deleted!', 'The product has been deleted.', 'success');
+            // Aktualisieren Sie die Liste der Produkte, indem Sie das gelöschte Produkt herausfiltern
+            this.products = this.products.filter(product => product.id !== id);
+            Swal.fire('Deleted!', 'Your product has been deleted.', 'success');
           },
-          error: () => {
-            Swal.fire('Failed!', 'There was an error deleting the product.', 'error');
+          error: (error) => {
+            Swal.fire('Error!', 'There was an error deleting the product.', 'error');
           }
         });
       }
     });
   }
 
-  // Diese Methode navigiert zur Erstellungsseite für ein neues Produkt
-  createProduct(): void {
+  onCreate(): void {
+    // Navigieren Sie zur Seite zum Erstellen eines neuen Produkts
     this.router.navigate(['/product/create']);
   }
 
-  // Methode um alle Produkte zu holen
   getAllProducts(): void {
     this.productControllerService.getAllProducts().subscribe({
       next: (products) => {
@@ -69,8 +69,23 @@ export class ProductsListComponent {
       },
       error: (error) => {
         console.error('Error fetching products:', error);
-        // Optional: Benutzer benachrichtigen, dass ein Fehler aufgetreten ist
+        Swal.fire('Error!', 'There was a problem fetching products.', 'error');
       }
     });
+  }
+
+  editProduct(productId: number): void {
+    // Logic to handle editing a product
+    this.router.navigate(['/product/edit', productId]);
+  }
+
+  deleteProduct(productId: number): void {
+    // Logic to handle deleting a product
+    // Confirm dialog, service call, etc.
+  }
+
+  createProduct(): void {
+    // Logic to navigate to the product creation page
+    this.router.navigate(['/product/create']);
   }
 }
