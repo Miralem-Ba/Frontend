@@ -45,8 +45,8 @@
       <tr mat-header-row *matHeaderRowDef="columnDefinition"></tr>
       <tr mat-row *matRowDef="let row; columns: columnDefinition;"></tr>
     </table>
-    <button class="Create" mat-icon-button color="gray" (click)="createProduct()">
-      <mat-icon> Create</mat-icon>
-    </button>
+    <div class="create-btn">
+      <button mat-raised-button color="primary" (click)="onCreate()">Neues Produkt erstellen</button>
+    </div>
   </div>
 </div>

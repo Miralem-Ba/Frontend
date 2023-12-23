@@ -13,7 +13,6 @@ import {MatButtonModule} from "@angular/material/button";
     MatIconModule,
     MatTableModule,
     MatButtonModule,
-    // ... Ihre Importe ...
   ],
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.scss']
@@ -59,7 +58,7 @@ export class ProductsListComponent {
 
   onCreate(): void {
     // Navigieren Sie zur Seite zum Erstellen eines neuen Produkts
-    this.router.navigate(['/product/create']);
+    this.router.navigate(['/product/list']);
   }
 
   getAllProducts(): void {
@@ -76,7 +75,7 @@ export class ProductsListComponent {
 
   editProduct(productId: number): void {
     // Logic to handle editing a product
-    this.router.navigate(['/product/edit', productId]);
+    this.router.navigate(['/product/list', productId]);
   }
 
   deleteProduct(productId: number): void {
@@ -86,6 +85,6 @@ export class ProductsListComponent {
 
   createProduct(): void {
     // Logic to navigate to the product creation page
-    this.router.navigate(['/product/create']);
+    this.router.navigate(['/product/list']);
   }
 }
