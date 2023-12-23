@@ -1,18 +1,19 @@
-/* Style for the form container */
+/* Styling for the category list component container */
 .mat-elevation-z2 {
-  width: 600px;           /* Set a fixed width for the form */
-  margin-left: auto;      /* Center the form horizontally (left margin) */
-  margin-right: auto;     /* Center the form horizontally (right margin) */
-  margin-top: 50px;       /* Add space above the form */
-  padding: 20px;          /* Add padding inside the form for spacing */
+  width: 600px; /* Fixed width for better layout control */
+  margin-left: auto; /* Horizontally center the container */
+  margin-right: auto;
+  margin-top: 50px; /* Vertical spacing from the top */
+  padding: 20px; /* Padding inside the container */
 }
 
-/* Style for Angular Material form fields */
+/* Ensuring the material table takes full width */
 mat-table {
-  width: 100%;            /* Make form fields occupy 100% of the form's width */
+  width: 100%;
 }
 
-.Create{
+/* Style for 'Create' button */
+.Create {
   height: 100%;
   width: 100%;
   display: flex;
@@ -20,11 +21,12 @@ mat-table {
   justify-content: center;
 }
 
-.create-btn{
+/* Style for the 'create new category' button */
+.create-btn {
   height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 20px; /* Padding for spacing */
 }

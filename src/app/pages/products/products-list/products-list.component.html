@@ -1,50 +1,70 @@
+<!-- Main content container -->
 <div class="content">
+  <!-- Table container with material design elevation -->
   <div class="mat-elevation-z2">
+    <!-- Material table bound to 'products' as its data source -->
     <table mat-table [dataSource]="products">
+      <!-- Column definition for 'name' -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name</th>
         <td mat-cell *matCellDef="let element"> {{element.name}} </td>
       </ng-container>
+
+      <!-- Column definition for 'id' -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID</th>
         <td mat-cell *matCellDef="let element"> {{element.id}} </td>
       </ng-container>
+
+      <!-- Column definition for 'price' -->
       <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef> Preis</th>
         <td mat-cell *matCellDef="let element"> {{element.price}} </td>
       </ng-container>
+
+      <!-- Column definition for 'stock' -->
       <ng-container matColumnDef="stock">
         <th mat-header-cell *matHeaderCellDef> Bestand</th>
         <td mat-cell *matCellDef="let element"> {{element.stock}} </td>
       </ng-container>
+
+      <!-- Column definition for 'image' -->
       <ng-container matColumnDef="image">
         <th mat-header-cell *matHeaderCellDef> Bild</th>
         <td mat-cell *matCellDef="let element"> {{element.image}} </td>
       </ng-container>
+
+      <!-- Column definition for 'sku' -->
       <ng-container matColumnDef="sku">
         <th mat-header-cell *matHeaderCellDef> Sku</th>
         <td mat-cell *matCellDef="let element"> {{element.sku}} </td>
       </ng-container>
+
+      <!-- Column definition for 'action' -->
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef> Aktionen</th>
         <td mat-cell *matCellDef="let element">
           <div class="flex flex-row gap-1" *pmShowAsAdmin>
-            <div class="flex flex-row gap-1">
-              <button mat-icon-button color="primary" (click)="editProduct(element.id)">
-                <mat-icon>edit</mat-icon>
-              </button>
-              <button mat-icon-button color="warn" (click)="deleteProduct(element.id)">
-                <mat-icon>delete</mat-icon>
-              </button>
-              <button mat-icon-button color="gray">
-                <mat-icon> Create</mat-icon>
-              </button>
-            </div>
+            <button mat-icon-button color="primary" (click)="editProduct(element.id)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteProduct(element.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <!-- Create button -->
+            <button mat-icon-button color="gray">
+              <mat-icon> Create</mat-icon>
+            </button>
           </div>
+        </td>
       </ng-container>
+
+      <!-- Table header and row definitions -->
       <tr mat-header-row *matHeaderRowDef="columnDefinition"></tr>
       <tr mat-row *matRowDef="let row; columns: columnDefinition;"></tr>
     </table>
+
+    <!-- Button for creating new products -->
     <div class="create-btn">
       <button mat-raised-button color="primary" (click)="onCreate()">Neues Produkt erstellen</button>
     </div>

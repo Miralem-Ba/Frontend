@@ -1,15 +1,17 @@
 import { inject } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import jwt_decode, {jwtDecode} from 'jwt-decode'; // Achten Sie darauf, dass die Import-Anweisung dem tatsächlichen Importpfad entspricht
+import jwt_decode, {jwtDecode} from 'jwt-decode'; // Ensure the import path matches your project's structure
 
 interface TokenPayload {
   roles: string[];
 }
 
+// Guard to restrict access to admin roles
 export class AdminGuard implements CanActivate {
 
   constructor(private router: Router) {}
 
+  // CanActivate method to determine if a route can be activated
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const token = localStorage.getItem('ACCESS_TOKEN');
     if (!token) {
@@ -30,10 +32,12 @@ export class AdminGuard implements CanActivate {
     return false;
   }
 
+  // Helper method to check if user is admin
   private isUserAdmin(payload: TokenPayload): boolean {
     return payload.roles.includes('admin');
   }
 
+  // Navigation to login if user is not authorized
   private navigateToLogin(): void {
     this.router.navigate(['/auth/login']);
   }

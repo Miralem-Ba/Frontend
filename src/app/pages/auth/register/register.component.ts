@@ -7,35 +7,34 @@ import { MatSelectModule } from "@angular/material/select";
 import { CommonModule } from "@angular/common";
 import { MatCardModule } from "@angular/material/card";
 import { Router } from "@angular/router";
-import { UserControllerService } from "../../../openapi-client"; // Ensure the path is correct
-import Swal from 'sweetalert2';
+import { UserControllerService } from "../../../openapi-client"; // Ensure this path is correct
+import Swal from 'sweetalert2'; // SweetAlert2 for user notifications
 
-// Define the RegisterComponent with necessary Angular Material components
+// Component decorator for RegisterComponent
 @Component({
-  selector: 'pm-register', // Component selector used in templates
-  standalone: true,       // Indicate that the component is standalone
+  selector: 'pm-register', // Component's HTML tag
+  standalone: true,       // Standalone component
   imports: [
-    CommonModule,         // Provides Angular directives like ngIf, ngFor
-    MatInputModule,       // Angular Material module for input fields
-    MatSelectModule,      // Angular Material module for select dropdowns
-    ReactiveFormsModule,   // Supports reactive form approach
-    MatCheckboxModule,    // Angular Material module for checkboxes
-    MatButtonModule,      // Angular Material module for buttons
-    MatCardModule         // Angular Material module for card layout
+    CommonModule,         // Angular's common functionalities
+    MatInputModule,       // Material input fields
+    MatSelectModule,      // Material select dropdowns
+    ReactiveFormsModule,   // Reactive forms
+    MatCheckboxModule,    // Material checkboxes
+    MatButtonModule,      // Material buttons
+    MatCardModule         // Material card layout
   ],
-  templateUrl: './register.component.html', // Link to the HTML template of the component
-  styleUrls: ['./register.component.scss']   // Link to the SCSS stylesheet of the component
+  templateUrl: './register.component.html', // HTML template path
+  styleUrls: ['./register.component.scss']   // SCSS stylesheet path
 })
 export class RegisterComponent {
   router = inject(Router); // Injecting Router for navigation
-  registerForm: FormGroup;  // FormGroup to manage registration form
+  registerForm: FormGroup;  // FormGroup for registration form
 
-  // Constructor with FormBuilder and UserControllerService injections
   constructor(
-    private formBuilder: FormBuilder,                   // FormBuilder to create FormGroup
-    private userControllerService: UserControllerService // Injecting UserControllerService
+    private formBuilder: FormBuilder,                   // FormBuilder for form creation
+    private userControllerService: UserControllerService // UserControllerService for API interaction
   ) {
-    // Initialize the registration form with form controls and validation rules
+    // Initialize registration form with controls and validation
     this.registerForm = this.formBuilder.group({
       salutation: ['', Validators.required],
       firstName: ['', Validators.required],
@@ -51,13 +50,13 @@ export class RegisterComponent {
     });
   }
 
-  // Method to handle registration form submission
+  // Handles registration form submission
   register() {
     if (this.registerForm.valid) {
-      // Perform registration request if the form is valid
+      // Perform registration if form is valid
       this.userControllerService.register(this.registerForm.value).subscribe({
         next: (response) => {
-          // Display success notification using SweetAlert2
+          // Display success message with SweetAlert2
           Swal.fire({
             title: 'Registration successful',
             text: 'You can log in now :)',
@@ -65,32 +64,29 @@ export class RegisterComponent {
             confirmButtonText: 'OK',
           }).then((result) => {
             if (result.isConfirmed) {
-              // Navigate to login page after confirmation
+              // Navigate to login page on confirmation
               this.router.navigate(['/login']);
             }
           });
-          console.log('Registration successful', response);
         },
         error: (error) => {
-          // Handle registration failure using SweetAlert2
+          // Display error message with SweetAlert2
           Swal.fire({
             title: 'Registration failed',
             text: error.error.message || 'An unexpected error has occurred :/',
             icon: 'error',
             confirmButtonText: 'OK',
           });
-          console.error('Registration failed', error);
         }
       });
     } else {
-      // Handle invalid form submission
+      // Display info message for invalid form
       Swal.fire({
         title: 'Invalid Form',
         text: 'Please complete the form correctly',
         icon: 'info',
         confirmButtonText: 'OK',
       });
-      console.error('Form is not valid');
     }
   }
 }

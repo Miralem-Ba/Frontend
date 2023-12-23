@@ -28,7 +28,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
 import { HttpInterceptorFn } from '@angular/common/http';
 
+// Simple interceptor function
 export const authorizationInterceptor: HttpInterceptorFn = (req, next) => {
-
+// Forward the request without any modifications
   return next(req);
 };

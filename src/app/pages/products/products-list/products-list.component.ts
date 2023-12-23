@@ -6,6 +6,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatTableModule} from "@angular/material/table";
 import {MatButtonModule} from "@angular/material/button";
 
+// ProductsListComponent: Manages the display and interactions with the product list
 @Component({
   selector: 'pm-products-list',
   standalone: true,
@@ -18,20 +19,34 @@ import {MatButtonModule} from "@angular/material/button";
   styleUrls: ['./products-list.component.scss']
 })
 export class ProductsListComponent {
-  products: Array<ProductShowDto> = [];
+  products: Array<ProductShowDto> = []; // Array to hold product data
   columnDefinition: string[] = ['name','id','price','stock','image','sku','action'];
   constructor(
     private productControllerService: ProductControllerService,
     private router: Router
   ) {
-    this.getAllProducts();
+    this.getAllProducts(); // Fetch products on component initialization
+  }
+  // Fetch all products from the server
+  getAllProducts(): void {
+    this.productControllerService.getAllProducts().subscribe({
+      next: (products) => {
+        this.products = products;
+      },
+      error: (error) => {
+        console.error('Error fetching products:', error);
+        Swal.fire('Error!', 'There was a problem fetching products.', 'error');
+      }
+    });
   }
 
+  // Navigate to the product edit page
   onEdit(id: number): void {
     // Hier navigieren Sie zur Bearbeitungsseite des Produkts
     this.router.navigate(['/product/edit', id]);
   }
 
+  // Confirm and delete a product
   onDelete(id: number): void {
     // Bestätigungsdialog vor dem Löschen
     Swal.fire({
@@ -55,34 +70,23 @@ export class ProductsListComponent {
       }
     });
   }
-
+// Navigate to the product creation page
   onCreate(): void {
     // Navigieren Sie zur Seite zum Erstellen eines neuen Produkts
     this.router.navigate(['/product/list']);
   }
-
-  getAllProducts(): void {
-    this.productControllerService.getAllProducts().subscribe({
-      next: (products) => {
-        this.products = products;
-      },
-      error: (error) => {
-        console.error('Error fetching products:', error);
-        Swal.fire('Error!', 'There was a problem fetching products.', 'error');
-      }
-    });
-  }
-
+// Navigate to the product edit page
   editProduct(productId: number): void {
     // Logic to handle editing a product
     this.router.navigate(['/product/list', productId]);
   }
-
+// Navigate to the product delete page
   deleteProduct(productId: number): void {
     // Logic to handle deleting a product
     // Confirm dialog, service call, etc.
   }
 
+  // Navigate to the product creation page
   createProduct(): void {
     // Logic to navigate to the product creation page
     this.router.navigate(['/product/list']);

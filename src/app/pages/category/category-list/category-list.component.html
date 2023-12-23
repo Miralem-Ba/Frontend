@@ -1,20 +1,25 @@
-<!-- Category List HTML -->
+<!-- Category List Component -->
 <div class="mat-elevation-z2">
+  <!-- Angular Material Table displaying categories -->
   <table mat-table [dataSource]="allCategories">
+    <!-- Column for category names -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Name</th>
       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
 
+    <!-- Column for category IDs -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> ID</th>
       <td mat-cell *matCellDef="let element"> {{element.id}} </td>
     </ng-container>
 
+    <!-- Column for action buttons -->
     <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef> Aktionen</th>
+      <th mat-header-cell *matHeaderCellDef> Actions</th>
       <td mat-cell *matCellDef="let element">
         <div class="flex flex-row gap-1" *pmShowAsAdmin>
+          <!-- Edit and delete buttons for each category -->
           <button mat-icon-button color="primary" (click)="editCategory(element.id)">
             <mat-icon>edit</mat-icon>
           </button>
@@ -29,8 +34,8 @@
     <tr mat-row *matRowDef="let row; columns: columnNames;"></tr>
   </table>
 
-  <!-- Button zum Erstellen neuer Kategorien -->
+  <!-- Button to create new categories -->
   <div class="create-btn">
-    <button mat-raised-button color="primary" (click)="onCreate()">Neue Kategorie erstellen</button>
+    <button mat-raised-button color="primary" (click)="onCreate()">Create New Category</button>
   </div>
 </div>
